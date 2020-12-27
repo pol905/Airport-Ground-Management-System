@@ -1,0 +1,6 @@
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% for park in parks %}
+	<option value="{{ park.fl_no }}">{{ park.park_bay }}</option>
+{% endfor %}

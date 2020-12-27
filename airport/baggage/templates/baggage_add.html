@@ -1,0 +1,62 @@
+{% extends 'base_template1.html' %} 
+{% load static from staticfiles %} 
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html> 
+
+{% block title %} Baggage {% endblock %} 
+
+{% block content %}
+<style type="text/css">
+    .asteriskField {
+        display: none;
+    }
+</style>
+<div class="row justify-content-center my-5">
+    <div class="col-6">
+        <div class="card border-secondary mb-3">
+            <h1 class="card-header">Baggage Details</h1>
+            <div class="card-body">
+                <form method="POST" id="baggageForm" data-flights-url="{% url 'ajax_load_flight' %}" data-names-url="{% url 'ajax_load_name' %}" novalidate>
+                    {% csrf_token %} 
+                    {{ form|crispy }}
+                    <div class="modal-footer">
+                        <a href="{% url 'baggage_list'%}">
+                            <button type="button" class="btn btn-secondary">Cancel</button>
+                        </a>
+                        <button type="submit" class="btn btn-primary">Add Details</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script>
+    $("#id_pnr").change(function() {
+        var url1 = $("#baggageForm").attr("data-flights-url");
+        var url2 = $("#baggageForm").attr("data-names-url");
+        var pnrid = $(this).val();
+
+        $.ajax({
+            url: url1,
+            data: {
+                'pnr1': pnrid
+            },
+            success: function(data) {
+                $("#id_fl_no").html(data);
+            }
+        });
+        $.ajax({
+            url: url2,
+            data: {
+                'pnr2': pnrid
+            },
+            success: function(data) {
+                $("#id_name").html(data);
+            }
+        });
+    });
+</script>
+
+{% endblock %}

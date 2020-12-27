@@ -1,0 +1,55 @@
+{%extends 'base_template1.html' %}
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+  {% block title %} Home {% endblock %}
+
+ {% block content %}
+ <div>
+  <table class="table table-bordered" id="departures">
+    <thead>
+      <tr>
+        <th class="text-center" scope="col">Flight Number</th>
+          <th class="text-center" scope="col">Departure Time</th>
+          <th class="text-center" scope="col">Destination</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for con in cons %}
+      <tr>
+        <td class="text-center">{{con.fl_no}}</td>
+          <td class="text-center">{{con.dep_time}}</td>
+          <td class="text-center">{{con.dest}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  <table class="table table-bordered" id="arrivals">
+    <thead>
+      <tr>
+        <th class="text-center" scope="col">Flight Number</th>
+          <th class="text-center" scope="col">Arrival Time</th>
+          <th class="text-center" scope="col">Inbound</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for disk in disks %}
+      <tr>
+        <td class="text-center">{{disk.fl_no}}</td>
+          <td class="text-center">{{disk.arr_time}}</td>
+          <td class="text-center">{{disk.inbound}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  <p id="Dep"><u><b><i>Departures:</i></b></u></p>
+    <p id="Arr"><u><b><i>Arrivals:</i></b></u></p>
+<a href='{%url "status_list" %}'><button type='button' class="but-a button-2">Flight Status</button></a>
+<a href='{%url "crew_list" %}'><button type='button' class="but-b button-3">Staff Details</button></a>
+<a href='{%url "passenger_list" %}'><button type='button' class="but-c button-4">Passenger</button></a>
+<a href='{%url "baggage_list" %}'><button type='button' class="but-d button-5">Baggage</button></a>
+<a href='{%url "flight_list" %}'><button type='button' class="but-e button-6">Flight</button></a>
+</div>
+  {%endblock%}

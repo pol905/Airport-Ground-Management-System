@@ -1,0 +1,7 @@
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{% for car in cars %}
+	<option value="{{ car.name }}">{{ car.name }}</option>
+{% endfor %}

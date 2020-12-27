@@ -1,0 +1,7 @@
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{% for dark in darks %}
+	<option value="{{ dark.fl_no }}">{{ dark.fl_no }}</option>
+{% endfor %}

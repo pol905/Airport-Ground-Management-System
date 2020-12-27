@@ -1,0 +1,155 @@
+#fli {
+    position: absolute;
+    top: 15%;
+    left: 8%;
+    font-size: 150%;    
+}
+
+
+#flight {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 40%;
+  position: absolute;
+  top: 30%;
+  left: 8%;  
+}
+
+#flight td, #flight th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  flex-wrap: nowrap;
+}
+
+#flight tr:nth-child(even){background-color: #f2f2f2;}
+
+#flight tr:hover {background-color: #ddd;}
+
+#flight th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.butra {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: absolute;
+  top: 30%;
+  right: 20%;
+  border-radius: 30px;  
+}
+
+.butrb {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: absolute;
+  top: 43%;
+  right: 20%;  
+  border-radius: 30px;
+}
+
+.butrc {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: absolute;
+  top: 56%;
+  right: 19.5%;  
+  border-radius: 30px;
+}
+
+.butrd {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: absolute;
+  top: 69%;
+  right: 19.5%;  
+  border-radius: 30px;
+}
+
+
+.button1ra{
+  background-color: #008CBA; 
+  color: white; 
+  border: 2px solid #008CBA;
+}
+
+.button2rb {
+  background-color: #008CBA; 
+  color: white; 
+  border: 2px solid #008CBA;
+}
+
+.button3rc {
+  background-color: #008CBA; 
+  color: white; 
+  border: 2px solid #008CBA;
+}
+
+.button4rd {
+  background-color: #008CBA; 
+  color: white; 
+  border: 2px solid #008CBA;
+}
+
+.button1ra:hover{
+  background-color: white;
+  color: black;
+}
+
+.button2rb:hover{
+  background-color: white;
+  color: black;
+}
+
+.button3rc:hover{
+  background-color: white;
+  color: black;
+}
+
+.button4rd:hover{
+  background-color: white;
+  color: black;
+}

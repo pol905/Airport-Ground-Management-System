@@ -1,0 +1,102 @@
+{% extends 'base_template1.html' %} 
+{% load static from staticfiles %} 
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html> 
+
+{% block title %} Flight {% endblock%} 
+
+{%block content%}
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+{% if brakes %}
+<p id="fli"><u><b><i>Flights:</i></b></u></p>
+<table class="table table-bordered" id="flight">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Flight Number</th>
+            <th class="text-center" scope="col">Parking Bay</th>
+            <th class="text-center" scope="col">Destination</th>
+            <th class="text-center" scope="col">Departure Time</th>
+            <th class="text-center" scope="col">Inbound</th>
+            <th class="text-center" scope="col">Airline</th>
+            <th class="text-center" scope="col">Arrival Time</th>
+            <th class="text-center" scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for brake in brakes %}
+        <tr>
+            <td class="text-center">{{brake.fl_no}}</td>
+            <td class="text-center">{{brake.park_bay}}</td>
+            <td class="text-center">{{brake.dest}}</td>
+            <td class="text-center">{{brake.dep_time}}</td>
+            <td class="text-center">{{brake.inbound}}</td>
+            <td class="text-center">{{brake.airline}}</td>
+            <td class="text-center">{{brake.arr_time}}</td>
+            <td class="text-center">
+                <form action="{% url 'flight_delete' brake.pk %}" method='POST' style="display: inline;">
+                    {% csrf_token %}
+                    <input type='hidden' name='flight-no' value="{{brake.fl_no}}" />
+                    <button type="submit" class="delete-status btn btn-sm btn-danger">
+                        <span class="fa fa-trash"></span>
+                    </button>
+                </form>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<a href='{% url "flight_add" %}'>
+    <button type="button" class="butra button1ra">Add Flight Details</button>
+</a>
+<button type="button" class="butrb button2rb" data-toggle="modal" data-target="#Hello_Modal">Search Flight Details</button>
+
+<!-- Searching Crew Details -->
+
+<div class="modal fade" id="Hello_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search Flight</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method='POST' action="{% url 'flight_search' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Flight Number:</label>
+                        <input type="text" class="form-control" name='textfield' id="formGroupExampleInput" placeholder="Enter Flight Number here">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class='container my-5 col-6'>
+    <div class="jumbotron jumbotron-fluid ">
+        <div class="container">
+            <div class='row justify-content-center'>
+                <h1 class="display-5">No Flight's Present</h1>
+            </div>
+            <div class='row justify-content-center'>
+                <p class="lead">Click on the button below to add a new entry</p>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{% url 'flight_add' %}">
+            <button type="button" class="btn btn-primary ">Add Flight</button>
+        </a>
+    </div>
+</div>
+{% endif %}
+ 
+{% endblock %}

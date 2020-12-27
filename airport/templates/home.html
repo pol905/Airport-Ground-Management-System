@@ -1,0 +1,165 @@
+{%extends 'base_template2.html' %} 
+{% load crispy_forms_tags %} 
+{% load static from staticfiles %}
+
+<!DOCTYPE html> 
+
+{% block content %}
+<html>
+<title>AGM</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: "Lato", sans-serif
+    }
+    
+    .mySlides {
+        display: none
+    }
+    
+    .w3-tag,
+    .fa {
+        cursor: pointer
+    }
+    
+    .w3-tag {
+        height: 15px;
+        width: 15px;
+        padding: 0;
+        margin-top: 6px
+    }
+</style>
+
+<body>
+
+    <!-- Content -->
+    <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
+        <div class="w3-panel">
+            <h1><b>About US </b></h1>
+            <h3>Speed, efficiency, and accuracy are important in ground handling services in order to minimize the turnaround time. Faster turnarounds for lower ground times are correlated to better profits. It is imperative that all the information that pertains to the handing of a airplane needs to be accessible to the staff that is servicing the airplane.
+      Not having all the data in a consolidated and easy to view manner increases the turnaround time of a plane. Our aim is to provide a system to ensure faster turnarounds and increase efficiency throughout the airport.</h3>
+        </div>
+
+        <!-- Grid -->
+        <div class="w3-row w3-container">
+            <div class="w3-center w3-padding-64">
+                <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">What We Offer</span>
+            </div>
+            <div class="w3-col l3 m6 w3-white w3-container w3-padding-16">
+                <h3>Design</h3>
+                <p>An all in one solution for management of an airport.</p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-grey w3-container w3-padding-16">
+                <h3>Efficiency</h3>
+                <p>A platform for quick access to all the data. </p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-dark-blue  w3-container w3-padding-16">
+                <h3>Need For System</h3>
+                <p>For implementing a system for management and keep track of the activities around the airport.</p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-black w3-container w3-padding-16">
+                <h3>Promises</h3>
+                <p>To provide a hassel free experience and maintain data consistency.</p>
+            </div>
+        </div>
+
+        <div class="w3-row-padding" id="about">
+            <div class="w3-center w3-padding-64">
+                <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">System Benefits</span>
+            </div>
+
+            <div class="w3-third w3-margin-bottom">
+                <div class="w3-card-4">
+                    <div class="w3-container">
+                        <h3>Single Window Interaction</h3>
+                        <p class="w3-opacity">Simple to use with minimalistic complexity. Allowing users to familiarize and opterate the system with little to none training of the system. </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-third w3-margin-bottom">
+                <div class="w3-card-4">
+
+                    <div class="w3-container">
+                        <h3>More Efficiency</h3>
+                        <p class="w3-opacity">The operation of diffrent departments can be cordinated throught this system, which inturn results in lesser communication mishaps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w3-third w3-margin-bottom">
+                <div class="w3-card-4">
+
+                    <div class="w3-container">
+                        <h3>More Profits</h3>
+                        <p class="w3-opacity">With more efficient system in place, operations can be completed faster resulting in faster turnarounds, allowing the airport to handle more aircrafts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="w3-center w3-padding-64" id="contact">
+                <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Contact Us</span>
+            </div>
+            <h3><p>Email</p></h3>
+            <h4> Asgms@gmail.com</h4>
+            <h3>Phone Number</h3>
+            <h4> 9611729021 <h4>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <h4></h4>
+            <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+
+            </footer>
+
+            <script>
+                // Slideshow
+                var slideIndex = 1;
+                showDivs(slideIndex);
+
+                function plusDivs(n) {
+                    showDivs(slideIndex += n);
+                }
+
+                function currentDiv(n) {
+                    showDivs(slideIndex = n);
+                }
+
+                function showDivs(n) {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    var dots = document.getElementsByClassName("demodots");
+                    if (n > x.length) {
+                        slideIndex = 1
+                    }
+                    if (n < 1) {
+                        slideIndex = x.length
+                    };
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" w3-white", "");
+                    }
+                    x[slideIndex - 1].style.display = "block";
+                    dots[slideIndex - 1].className += " w3-white";
+                }
+            </script>
+
+</body>
+{%endblock%}

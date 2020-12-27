@@ -1,0 +1,104 @@
+{% extends 'base_template1.html' %} 
+{% load static from staticfiles %} 
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html> 
+{% block title %} Status {% endblock %} 
+
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+{% if ranks %}
+<p id="fli"><u><b><i>Flight Status:</i></b></u></p>
+<table class="table table-bordered" id="flight">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Flight no</th>
+            <th class="text-center" scope="col">Bay</th>
+            <th class="text-center" scope="col">Passenger count</th>
+            <th class="text-center" scope="col">Fuel</th>
+            <th class="text-center" scope="col">Catering</th>
+            <th class="text-center" scope="col">Cleaning</th>
+            <th class="text-center" scope="col">Destination</th>
+            <th class="text-center" scope="col">Departure Time</th>
+            <th class="text-center" scope="col">Update / Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rank in ranks %}
+        <tr>
+            <td class="text-center">{{rank.fl_no}}</td>
+            <td class="text-center">{{rank.park_bay}}</td>
+            <td class="text-center">{{rank.pas_cnt}}</td>
+            <td class="text-center">{{rank.fuel}}</td>
+            <td class="text-center">{{rank.catering}}</td>
+            <td class="text-center">{{rank.Cleaning}}</td>
+            <td class="text-center">{{rank.dest}}</td>
+            <td class="text-center">{{rank.dep_time}}</td>
+            <td class="text-center">
+                <a href="{% url 'status_update' rank.pk %}">
+                    <button type="button" class="update-status btn btn-sm btn-primary">
+                        <span class="fa fa-pencil"></span>
+                    </button>
+                </a>
+                <form action="{% url 'status_delete' rank.pk %}" method='POST' style="display: inline;">
+                    {% csrf_token %}
+                    <input type='hidden' name='flight-no' value="{{rank.fl_no}}" />
+                    <button type="submit" class="delete-status btn btn-sm btn-danger">
+                        <span class="fa fa-trash"></span>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<a href="{% url 'status_add' %}">
+    <button type="button" class="butra button1ra">Add Flight Status</button>
+</a>
+<button type="button" class="butrb button2rb" data-toggle="modal" data-target="#Hello_Modal">Search Flight Status</button>
+
+<div class="modal fade" id="Hello_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method='POST' action="{% url 'status_search' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Flight Number:</label>
+                        <input type="text" class="form-control" name='textfield' id="formGroupExampleInput" placeholder="Enter Flight Number here">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class='container my-5 col-6'>
+    <div class="jumbotron jumbotron-fluid ">
+        <div class="container">
+            <div class='row justify-content-center'>
+                <h1 class="display-5">No Flight Status Present</h1>
+            </div>
+            <div class='row justify-content-center'>
+                <p class="lead">Click on the button below to add a new entry</p>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{% url 'status_add' %}">
+            <button type="button" class="btn btn-primary ">Add Flight Status</button>
+        </a>
+    </div>
+</div>
+{% endif %} 
+{% endblock%}

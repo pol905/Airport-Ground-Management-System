@@ -1,0 +1,76 @@
+{% extends 'base_template1.html' %} 
+{% load static from staticfiles %} 
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html> 
+{% block title %} Status {% endblock %} 
+
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+{% if flecks %}
+<p id="fli"><u><b><i>Flight Status:</i></b></u></p>
+
+<table class="table table-bordered" id="flight">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Flight no</th>
+            <th class="text-center" scope="col">Bay</th>
+            <th class="text-center" scope="col">Passenger count</th>
+            <th class="text-center" scope="col">Fuel</th>
+            <th class="text-center" scope="col">Catering</th>
+            <th class="text-center" scope="col">Cleaning</th>
+            <th class="text-center" scope="col">Destination</th>
+            <th class="text-center" scope="col">Departure Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fleck in flecks %}
+        <tr>
+            <td class="text-center">{{fleck.fl_no}}</td>
+            <td class="text-center">{{fleck.park_bay}}</td>
+            <td class="text-center">{{fleck.pas_cnt}}</td>
+            <td class="text-center">{{fleck.fuel}}</td>
+            <td class="text-center">{{fleck.catering}}</td>
+            <td class="text-center">{{fleck.Cleaning}}</td>
+            <td class="text-center">{{fleck.dest}}</td>
+            <td class="text-center">{{fleck.dep_time}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% else %}
+<div class='container my-5 col-6'>
+    <div class="jumbotron jumbotron-fluid ">
+        <div class="container">
+            <div class='row justify-content-center'>
+                <h1 class="display-5">No Flight With The Given ID is Present</h1>
+            </div>
+            <div class='row justify-content-center'>
+                <p class="lead">Click on the button below to go back</p>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{% url 'status_list' %}">
+            <button type="button" class="btn btn-primary ">Back</button>
+        </a>
+    </div>
+</div>
+
+{% endif %} 
+
+{% if flecks %}
+<a href="{% url 'status_list' %}">
+    <button type="button" class="btn btn-primary bt1 ">Back
+    </button>
+</a>
+<style type="text/css">
+    .bt1 {
+        position: absolute;
+        top: 35%;
+        right: 30%;
+    }
+</style>
+{% endif %} 
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base_template1.html' %} 
+{% load static from staticfiles %} 
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html> 
+{% block title %} Status {% endblock %} 
+
+{% block content %}
+<style type="text/css">
+    .asteriskField {
+        display: none;
+    }
+</style>
+<div class="row justify-content-center my-5">
+    <div class="col-6">
+        <div class="card border-secondary mb-3">
+            <h1 class="card-header">Flight Details</h1>
+            <div class="card-body">
+                <form method="POST" id="statusForm" data-parks-url="{% url 'ajax_load_park' %}" data-dest-url="{% url 'ajax_load_dest' %}" data-dept-url="{% url 'ajax_load_dept'%}" novalidate>
+                    {% csrf_token %} 
+                    {{ form|crispy }}
+                    <div class="modal-footer">
+                        <a href="{% url 'status_list'%}">
+                            <button type="button" class="btn btn-secondary">Cancel</button>
+                        </a>
+                        <button type="submit" class="btn btn-primary">Add Details</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script>
+    $("#id_fl_no").change(function() {
+        var url = $("#statusForm").attr("data-parks-url");
+        var flightId = $(this).val();
+        var url1 = $("#statusForm").attr("data-dest-url");
+        var url2 = $("#statusForm").attr("data-dept-url");
+        $.ajax({
+            url: url,
+            data: {
+                'flight1': flightId
+            },
+            success: function(data) {
+                $("#id_park_bay").html(data);
+            }
+        });
+        $.ajax({
+            url: url1,
+            data: {
+                'flight2': flightId
+            },
+            success: function(data) {
+                $("#id_dest").html(data);
+            }
+        });
+        $.ajax({
+            url: url2,
+            data: {
+                'flight3': flightId
+            },
+            success: function(data) {
+                $("#id_dep_time").html(data);
+            }
+        });
+    });
+</script>
+
+{% endblock %}

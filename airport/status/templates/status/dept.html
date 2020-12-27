@@ -1,0 +1,6 @@
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% for dept in depts %}
+	<option value="{{ dept.fl_no }}">{{ dept.dep_time }}</option>
+{% endfor %}

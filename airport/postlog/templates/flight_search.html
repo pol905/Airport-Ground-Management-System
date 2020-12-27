@@ -1,0 +1,73 @@
+{% extends 'base_template1.html' %} 
+{% load static from staticfiles %} 
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html> 
+
+{% block title %} Status {% endblock %} 
+{% block content %} 
+
+{% if wakes %}
+
+<p id="fli"><u><b><i>Flight Details:</i></b></u></p>
+<table class="table table-bordered" id="flight">
+    <thead>
+        <tr>
+            <th class="text-center" scope="col">Flight Number</th>
+            <th class="text-center" scope="col">Parking Bay</th>
+            <th class="text-center" scope="col">Destination</th>
+            <th class="text-center" scope="col">Departure Time</th>
+            <th class="text-center" scope="col">Inbound</th>
+            <th class="text-center" scope="col">Airline</th>
+            <th class="text-center" scope="col">Arrival Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wake in wakes %}
+        <tr>
+            <td class="text-center">{{wake.fl_no}}</td>
+            <td class="text-center">{{wake.park_bay}}</td>
+            <td class="text-center">{{wake.dest}}</td>
+            <td class="text-center">{{wake.dep_time}}</td>
+            <td class="text-center">{{wake.inbound}}</td>
+            <td class="text-center">{{wake.airline}}</td>
+            <td class="text-center">{{wake.arr_time}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% else %}
+<div class='container my-5 col-6'>
+    <div class="jumbotron jumbotron-fluid ">
+        <div class="container">
+            <div class='row justify-content-center'>
+                <h1 class="display-5">No Flight With The Given ID is Present</h1>
+            </div>
+            <div class='row justify-content-center'>
+                <p class="lead">Click on the button below to go back</p>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{% url 'flight_list' %}">
+            <button type="button" class="btn btn-primary ">Back</button>
+        </a>
+    </div>
+</div>
+
+{% endif %} 
+
+{% if wakes %}
+<a href="{% url 'flight_list' %}">
+    <button type="button" class="btn btn-primary bt1 ">Back
+    </button>
+</a>
+<style type="text/css">
+    .bt1 {
+        position: absolute;
+        top: 35%;
+        right: 30%;
+    }
+</style>
+{% endif %} 
+{% endblock%}

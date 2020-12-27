@@ -1,0 +1,6 @@
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+
+{% for dest in dests %}
+	<option value="{{ dest.fl_no }}">{{ dest.dest }}</option>
+{% endfor %}
